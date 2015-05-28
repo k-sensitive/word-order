@@ -1,10 +1,10 @@
 var wordOrder = function(string){
   var wordList = string.split(" ");
-  var count = 0;
-  var finalArray = [];
   wordList = wordList.sort();
-  var index = 0;
+  var count = 0;
+  var unsortedArray = [];
   var cloneList = wordList.slice();
+  var finalArray = []
 
   cloneList.forEach(function(word){
     for(var i = 0; i < cloneList.length; i++){
@@ -15,14 +15,19 @@ var wordOrder = function(string){
     }
 
     if(count > 0){
-      finalArray.push([count, word]);
+      unsortedArray.push([word, count]);
     }
 
     count = 0;
   });
-  debugger;
 
+  unsortedArray = unsortedArray.sort(function(a,b){
+    return b[1] - a[1];
+  });
 
+  unsortedArray.forEach(function(element){
+    finalArray.push(element.join(" : "));
+  });
 
-  return finalArray.join(" ");
+  return finalArray.join(" , ");
 }
