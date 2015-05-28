@@ -31,3 +31,14 @@ var wordOrder = function(string){
 
   return finalArray.join(" , ");
 }
+
+$(function(){
+  $("form#input-form").submit(function(event){
+    var string = $('input#input-string').val();
+    var result = wordOrder(string);
+
+    $("#word-order-count").text(result);
+    $("#result").show()
+    event.preventDefault();
+  });
+});
